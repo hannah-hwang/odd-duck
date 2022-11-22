@@ -3,6 +3,9 @@
 let image1 = document.querySelector('section img:first-child');
 let image2 = document.querySelector('section img:nth-child(2)');
 let image3 = document.querySelector('section img:nth-child(3)');
+
+let resultsButton = document.getElementById('results');
+
 let index1 = 0;
 let index2 = 0;
 let index3 = 0
@@ -93,7 +96,7 @@ function handleProductClick(event) {
 
     products[event.target.id].clicks++;
 
-    if (clicks > 25) {
+    if (clicks > 3) {
         image1.removeEventListener('click', handleProductClick);
         image2.removeEventListener('click', handleProductClick);
         image3.removeEventListener('click', handleProductClick);
@@ -109,13 +112,12 @@ function viewResults(event) {
         productLi.innerText = `${products[i].name} had ${products[i].clicks} votes, and was seen ${products[i].views} times.`;
         productUl.appendChild(productLi);
     }
-
-    results.removeEventListener('clicks', viewResults);
+    resultsButton.removeEventListener('clicks', viewResults);
 
 }
 
 image1.addEventListener('click', handleProductClick);
 image2.addEventListener('click', handleProductClick);
 image3.addEventListener('click', handleProductClick);
-results.addEventListener('click', viewResults);
+resultsButton.addEventListener('click', viewResults);
 renderProducts();
