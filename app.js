@@ -96,7 +96,7 @@ function handleProductClick(event) {
 
     products[event.target.id].clicks++;
 
-    if (clicks > 3) {
+    if (clicks > 25) {
         image1.removeEventListener('click', handleProductClick);
         image2.removeEventListener('click', handleProductClick);
         image3.removeEventListener('click', handleProductClick);
