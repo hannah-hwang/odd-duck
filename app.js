@@ -51,7 +51,7 @@ function renderProducts() {
     index2 = getRandomIndex();
     index3 = getRandomIndex();
 
-    while (index1 === index2 === index3) {
+    while (index1 === index2 || index2 === index3 || index1 === index3) {
         index2 = getRandomIndex();
         index3 = getRandomIndex();
     }
@@ -96,7 +96,7 @@ function handleProductClick(event) {
 
     products[event.target.id].clicks++;
 
-    if (clicks > 25) {
+    if (clicks > 24) {
         image1.removeEventListener('click', handleProductClick);
         image2.removeEventListener('click', handleProductClick);
         image3.removeEventListener('click', handleProductClick);
@@ -112,6 +112,36 @@ function viewResults(event) {
         productLi.innerText = `${products[i].name} had ${products[i].clicks} votes, and was seen ${products[i].views} times.`;
         productUl.appendChild(productLi);
     }
+
+    const ctx = document.getElementById('myChart');
+
+    let productNames = [];
+    let productClicks = [];
+    for (let i = 0; i < products.length; i++) {
+        productNames.push(products[i].name);
+        productClicks.push(products[i].clicks);
+    }
+    console.log(productNames, productClicks);
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: productNames,
+            datasets: [{
+                label: '# of Clicks',
+                data: productClicks,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
     resultsButton.removeEventListener('clicks', viewResults);
 
 }
