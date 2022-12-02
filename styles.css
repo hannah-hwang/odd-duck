@@ -22,3 +22,8 @@ img {
     height: 300px;
     margin: 1rem;
 }
+
+#chart {
+    height: 500px;
+    width: 900px;
+}

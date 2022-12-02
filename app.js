@@ -42,6 +42,11 @@ let product19 = new Product('Sweep Onesie', './images/sweep.png');
 let products = [product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12, product13,
     product14, product15, product16, product17, product18, product19];
 
+if (localStorage.getItem('savedProducts')) {
+    let savedProducts = localStorage.getItem('savedProducts');
+    products = JSON.parse(savedProducts);
+}
+
 function getRandomIndex() {
     return Math.floor(Math.random() * products.length)
 }
@@ -96,6 +101,11 @@ function handleProductClick(event) {
 
     products[event.target.id].clicks++;
 
+    let saveClicks = JSON.stringify(products);
+    localStorage.setItem('savedProducts', saveClicks);
+
+    
+
     if (clicks > 24) {
         image1.removeEventListener('click', handleProductClick);
         image2.removeEventListener('click', handleProductClick);
@@ -117,11 +127,13 @@ function viewResults(event) {
 
     let productNames = [];
     let productClicks = [];
+    let productViews = [];
     for (let i = 0; i < products.length; i++) {
         productNames.push(products[i].name);
         productClicks.push(products[i].clicks);
+        productViews.push(products[i].views);
     }
-    console.log(productNames, productClicks);
+    console.log(productNames, productClicks, productViews);
 
     new Chart(ctx, {
         type: 'bar',
@@ -130,6 +142,11 @@ function viewResults(event) {
             datasets: [{
                 label: '# of Clicks',
                 data: productClicks,
+                borderWidth: 1
+            },
+            {
+                label: '# of Views',
+                data: productViews,
                 borderWidth: 1
             }]
         },
