@@ -34,9 +34,8 @@ p {
 
 section {
     width: fit-content;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     margin: auto;
     background: #e0e3e4;
     /* border: 5px solid #364958; */
@@ -50,6 +49,7 @@ img {
     margin: 2rem;
     /* border: 3px solid #364958; */
     border-radius: 15px;
+    box-shadow: 5px 5px 2px -2px rgb(139, 139, 139);
 }
 
 img:hover {
@@ -80,7 +80,6 @@ li {
     height: 500px;
     width: 900px;
     background: #e0e3e4;
-    /* border: 5px solid #364958; */
     border-radius: 15px;
     box-shadow: 5px 5px 2px -2px rgb(139, 139, 139);
 }
