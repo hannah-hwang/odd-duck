@@ -142,7 +142,7 @@ function viewResults(event) {
             datasets: [{
                 label: '# of Clicks',
                 data: productClicks,
-                borderWidth: 1
+                borderWidth: 1,
             },
             {
                 label: '# of Views',
