@@ -8,7 +8,7 @@ let resultsButton = document.getElementById('results');
 
 let index1 = 0;
 let index2 = 0;
-let index3 = 0
+let index3 = 0;
 let clicks = 0;
 
 
@@ -42,6 +42,8 @@ let product19 = new Product('Sweep Onesie', './images/sweep.png');
 let products = [product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12, product13,
     product14, product15, product16, product17, product18, product19];
 
+let uniqueProducts = [];
+
 if (localStorage.getItem('savedProducts')) {
     let savedProducts = localStorage.getItem('savedProducts');
     products = JSON.parse(savedProducts);
@@ -52,18 +54,29 @@ function getRandomIndex() {
 }
 
 function renderProducts() {
-    index1 = getRandomIndex();
-    index2 = getRandomIndex();
-    index3 = getRandomIndex();
+    // index1 = getRandomIndex();
+    // index2 = getRandomIndex();
+    // index3 = getRandomIndex();
 
-    while (index1 === index2 || index2 === index3 || index1 === index3) {
-        index2 = getRandomIndex();
-        index3 = getRandomIndex();
+    // while (index1 === index2 || index2 === index3 || index1 === index3) {
+    //     index2 = getRandomIndex();
+    //     index3 = getRandomIndex();
+    // for (let i = 0; i < 25; i++) {
+    while (uniqueProducts.length < 6) {
+        let randomProduct = getRandomIndex();
+        if (!uniqueProducts.includes(products[randomProduct])) {
+            uniqueProducts.push(products[randomProduct]);
+        }
     }
 
-    let firstProduct = products[index1];
-    let secondProduct = products[index2];
-    let thirdProduct = products[index3];
+    let firstProduct = uniqueProducts.shift();
+    let secondProduct = uniqueProducts.shift();
+    let thirdProduct = uniqueProducts.shift();
+
+    // let firstProduct = products[index1];
+    // let secondProduct = products[index2];
+    // let thirdProduct = products[index3];
+
 
     image1.src = firstProduct.src;
     image1.alt = firstProduct.name;
@@ -85,6 +98,8 @@ function renderProducts() {
     thirdProduct.views++;
 
 }
+// }
+
 
 function handleProductClick(event) {
     clicks++;
@@ -104,7 +119,7 @@ function handleProductClick(event) {
     let saveClicks = JSON.stringify(products);
     localStorage.setItem('savedProducts', saveClicks);
 
-    
+
 
     if (clicks > 24) {
         image1.removeEventListener('click', handleProductClick);
@@ -167,4 +182,5 @@ image1.addEventListener('click', handleProductClick);
 image2.addEventListener('click', handleProductClick);
 image3.addEventListener('click', handleProductClick);
 resultsButton.addEventListener('click', viewResults);
+
 renderProducts();
