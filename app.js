@@ -54,14 +54,6 @@ function getRandomIndex() {
 }
 
 function renderProducts() {
-    // index1 = getRandomIndex();
-    // index2 = getRandomIndex();
-    // index3 = getRandomIndex();
-
-    // while (index1 === index2 || index2 === index3 || index1 === index3) {
-    //     index2 = getRandomIndex();
-    //     index3 = getRandomIndex();
-    // for (let i = 0; i < 25; i++) {
     while (uniqueProducts.length < 6) {
         let randomProduct = getRandomIndex();
         if (!uniqueProducts.includes(products[randomProduct])) {
@@ -72,10 +64,6 @@ function renderProducts() {
     let firstProduct = uniqueProducts.shift();
     let secondProduct = uniqueProducts.shift();
     let thirdProduct = uniqueProducts.shift();
-
-    // let firstProduct = products[index1];
-    // let secondProduct = products[index2];
-    // let thirdProduct = products[index3];
 
 
     image1.src = firstProduct.src;
@@ -98,7 +86,7 @@ function renderProducts() {
     thirdProduct.views++;
 
 }
-// }
+
 
 
 function handleProductClick(event) {

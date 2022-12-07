@@ -34,6 +34,7 @@ p {
 
 section {
     width: fit-content;
+    height: fit-content;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: auto;
@@ -49,11 +50,11 @@ img {
     margin: 2rem;
     /* border: 3px solid #364958; */
     border-radius: 15px;
-    box-shadow: 5px 5px 2px -2px rgb(139, 139, 139);
 }
 
 img:hover {
-
+    transition: 0.3s;
+    box-shadow: 5px 5px 2px -2px #76838b;
 }
 
 button {
@@ -63,14 +64,22 @@ button {
     color: white;
     letter-spacing: 2px;
     border-radius: 10px;
+    border: none;
     margin: 1rem;
     height: 2rem;
     width: 10rem;
 }
 
+button:hover {
+    background-color: #546e81;
+    color: white;
+    border: none;
+}
+
 ul {
     margin: 1rem;
 }
+
 li {
     font-size: 20px;
     margin: 5px;
